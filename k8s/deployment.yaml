@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-writer-sb
+  labels:
+    app: email-writer-sb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: email-writer-sb
+  template:
+    metadata:
+      labels:
+        app: email-writer-sb
+    spec:
+      containers:
+        - name: email-writer-sb
+          image: brijeshthummar02/email-writer-sb:latest  # Update with your DockerHub repo
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
